@@ -75,8 +75,13 @@ Note: a plain `http://` base URL (local server) also needs `android:usesCleartex
 
 ### 4. Build
 
-The repo has `gradle/wrapper/gradle-wrapper.properties` but no wrapper JAR or scripts yet.
-Generate them once with a local Gradle (`gradle wrapper`), or open the project in Android Studio.
+Open the project in Android Studio, or use the Gradle wrapper. Gradle 8.11 needs Java 17–21 to
+run; Java 25, which ships inside Android Studio, is too new. Point `JAVA_HOME` at a Java 21, for
+example the one Android Studio downloads:
+
+```
+export JAVA_HOME=~/Library/Java/JavaVirtualMachines/jbr-21.0.11/Contents/Home
+```
 
 ```
 ./gradlew :app:testDebugUnitTest
