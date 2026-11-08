@@ -35,12 +35,16 @@ android {
             "String", "API_BASE_URL",
             "\"${config("mars.apiBaseUrl", "MARS_API_BASE_URL", "https://mars.blockthem.xyz")}\"",
         )
-        // OAuth 2.0 *Web application* client ID. Google ID tokens are issued
-        // with this value as the audience, so the server must accept it
-        // (MARS_GOOGLE_CLIENT_IDS).
+        // OAuth 2.0 *Web application* client ID (not a secret). Google ID
+        // tokens are issued with this value as the audience, so the server
+        // must accept it (MARS_GOOGLE_CLIENT_IDS).
         buildConfigField(
             "String", "GOOGLE_SERVER_CLIENT_ID",
-            "\"${config("mars.googleServerClientId", "MARS_GOOGLE_SERVER_CLIENT_ID", "")}\"",
+            "\"${config(
+                "mars.googleServerClientId",
+                "MARS_GOOGLE_SERVER_CLIENT_ID",
+                "843528807889-3ism1tkq2v9v9655vq4npk0o8spg78fa.apps.googleusercontent.com",
+            )}\"",
         )
     }
 

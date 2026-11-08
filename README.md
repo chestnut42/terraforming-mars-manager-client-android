@@ -51,13 +51,21 @@ MARS_GOOGLE_CLIENT_IDS=<web-client-id>.apps.googleusercontent.com
 
 ### 3. App
 
-Add to `local.properties` (not committed):
+The production values are built in, so you don't need to configure anything:
+
+- API: `https://mars.blockthem.xyz`
+- Web client ID: `843528807889-3ism1tkq2v9v9655vq4npk0o8spg78fa.apps.googleusercontent.com`
+
+Client IDs aren't secrets; they ship inside the APK anyway. Each developer still has to add the
+SHA-1 of their own debug key to the Android OAuth client (step 1), or sign-in fails on their builds.
+
+To point the app at another server or client, override either value in `local.properties`
+(not committed):
 
 ```properties
 sdk.dir=/path/to/Android/sdk
-mars.googleServerClientId=<web-client-id>.apps.googleusercontent.com
-# optional, defaults to https://mars.blockthem.xyz
 # mars.apiBaseUrl=http://10.0.2.2:8080
+# mars.googleServerClientId=<web-client-id>.apps.googleusercontent.com
 ```
 
 The same keys also work as Gradle properties (`-Pmars.googleServerClientId=...`) or as
