@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.google.services)
 }
 
 // Build-time configuration. Values are looked up in local.properties, then
@@ -86,6 +87,9 @@ dependencies {
     implementation(libs.googleid)
     implementation(libs.androidx.browser)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.play.services)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.messaging)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.okhttp)
 

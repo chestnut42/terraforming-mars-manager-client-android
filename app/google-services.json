@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "96331823261",
+    "project_id": "terraformingmarsmanager",
+    "storage_bucket": "terraformingmarsmanager.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96331823261:android:9eab991f17946974fdfc74",
+        "android_client_info": {
+          "package_name": "xyz.blockthem.mars.manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96331823261-k9udqfveec6v2qiqca48s64qahgh73t1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzu39sqzgv1BEfu6iTTNBr5To5n-t0VzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96331823261-k9udqfveec6v2qiqca48s64qahgh73t1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

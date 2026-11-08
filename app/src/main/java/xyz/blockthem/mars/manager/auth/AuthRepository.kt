@@ -135,6 +135,13 @@ class AuthRepository(
         // Another caller may have refreshed already while we waited for the lock.
         idToken?.let { if (it != rejected && Jwt.isFresh(it, nowSeconds())) return it }
 
+        // Without a visible activity (e.g. a background FCM callback) sign-in
+        // can't be refreshed. Fail this request but stay signed in; the next
+        // app start refreshes it.
+        if (activity.get() == null) {
+            throw ApiException.Unauthorized("Sign-in can't be refreshed in the background")
+        }
+
         val token = silentToken()
         if (token == null) {
             signOutLocally()

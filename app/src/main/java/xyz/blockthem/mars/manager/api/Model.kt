@@ -58,6 +58,10 @@ data class GamesResponse(val games: List<Game> = emptyList())
 @Serializable
 data class SearchRequest(val search: String)
 
+/** Android sends an FCM token; an empty token turns pushes off. */
+@Serializable
+data class UpdateDeviceTokenRequest(val fcmToken: String)
+
 @Serializable
 data class UpdateMeRequest(val nickname: String, val color: PlayerColor)
 
