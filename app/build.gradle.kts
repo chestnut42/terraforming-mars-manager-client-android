@@ -43,7 +43,7 @@ android {
             "\"${config(
                 "mars.googleServerClientId",
                 "MARS_GOOGLE_SERVER_CLIENT_ID",
-                "843528807889-3ism1tkq2v9v9655vq4npk0o8spg78fa.apps.googleusercontent.com",
+                "96331823261-k9udqfveec6v2qiqca48s64qahgh73t1.apps.googleusercontent.com",
             )}\"",
         )
     }

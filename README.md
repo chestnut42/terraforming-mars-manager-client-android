@@ -54,7 +54,7 @@ MARS_GOOGLE_CLIENT_IDS=<web-client-id>.apps.googleusercontent.com
 The production values are built in, so you don't need to configure anything:
 
 - API: `https://mars.blockthem.xyz`
-- Web client ID: `843528807889-3ism1tkq2v9v9655vq4npk0o8spg78fa.apps.googleusercontent.com`
+- Web client ID: `96331823261-k9udqfveec6v2qiqca48s64qahgh73t1.apps.googleusercontent.com`
 
 Client IDs aren't secrets; they ship inside the APK anyway. Each developer still has to add the
 SHA-1 of their own debug key to the Android OAuth client (step 1), or sign-in fails on their builds.
