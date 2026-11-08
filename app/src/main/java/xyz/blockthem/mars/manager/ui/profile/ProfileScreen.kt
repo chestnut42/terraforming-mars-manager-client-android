@@ -56,7 +56,7 @@ import xyz.blockthem.mars.manager.ui.common.marsViewModel
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun ProfileScreen() {
-    val vm = marsViewModel { ProfileViewModel(it) }
+    val vm = marsViewModel { ProfileViewModel(it.auth, it.push) }
     val state by vm.state.collectAsStateWithLifecycle()
     val focus = LocalFocusManager.current
     var confirmSignOut by remember { mutableStateOf(false) }

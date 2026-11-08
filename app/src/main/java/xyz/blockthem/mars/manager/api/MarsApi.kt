@@ -53,6 +53,11 @@ class MarsApi(
     suspend fun getLeaderboard(): List<User> =
         get<UsersResponse>("/manager/api/v1/leaderboard").users
 
+    /** Registers this device for pushes. An empty token unregisters it. */
+    suspend fun updateFcmToken(token: String) {
+        post<UpdateDeviceTokenRequest, EmptyMessage>("/manager/api/v1/me/device-token", UpdateDeviceTokenRequest(token))
+    }
+
     suspend fun createGame(request: CreateGameRequest) {
         post<CreateGameRequest, EmptyMessage>("/manager/api/v2/game", request)
     }

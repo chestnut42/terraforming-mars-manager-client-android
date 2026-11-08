@@ -46,7 +46,7 @@ import xyz.blockthem.mars.manager.ui.common.openUrl
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GamesScreen(onCreateGame: () -> Unit) {
-    val vm = marsViewModel { GamesViewModel(it.api) }
+    val vm = marsViewModel { GamesViewModel(it.auth.api) }
     val state by vm.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
 

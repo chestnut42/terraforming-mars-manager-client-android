@@ -92,6 +92,15 @@ class MarsApiTest {
     }
 
     @Test
+    fun updateFcmTokenSendsGatewayFieldName() = runTest {
+        server.enqueue(MockResponse().setBody("{}"))
+        api.updateFcmToken("fcm-123")
+        val req = server.takeRequest()
+        assertEquals("/manager/api/v1/me/device-token", req.path)
+        assertEquals("""{"fcmToken":"fcm-123"}""", req.body.readUtf8())
+    }
+
+    @Test
     fun refreshesTokenOnceOn401() = runTest {
         server.enqueue(MockResponse().setResponseCode(401).setBody("Failed to parse token: exp"))
         server.enqueue(MockResponse().setBody("""{"users":[{"id":"1","nickname":"a","elo":1000}]}"""))

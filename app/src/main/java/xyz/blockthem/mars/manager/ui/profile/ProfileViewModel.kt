@@ -12,6 +12,7 @@ import xyz.blockthem.mars.manager.api.PlayerColor
 import xyz.blockthem.mars.manager.api.User
 import xyz.blockthem.mars.manager.api.userMessage
 import xyz.blockthem.mars.manager.auth.AuthRepository
+import xyz.blockthem.mars.manager.push.PushManager
 
 /** Nicknames given to brand new accounts by the server ("Player 1A2B..."). */
 const val DEFAULT_NICKNAME_PREFIX = "Player "
@@ -30,7 +31,10 @@ data class ProfileState(
     val hasDefaultNickname get() = user?.nickname?.startsWith(DEFAULT_NICKNAME_PREFIX) == true
 }
 
-class ProfileViewModel(private val auth: AuthRepository) : ViewModel() {
+class ProfileViewModel(
+    private val auth: AuthRepository,
+    private val push: PushManager,
+) : ViewModel() {
     private val _state = MutableStateFlow(ProfileState())
     val state: StateFlow<ProfileState> = _state.asStateFlow()
 
@@ -73,7 +77,7 @@ class ProfileViewModel(private val auth: AuthRepository) : ViewModel() {
     }
 
     fun signOut() {
-        viewModelScope.launch { auth.signOut() }
+        viewModelScope.launch { push.signOut() }
     }
 
     private fun ProfileState.withUser(user: User) = copy(user = user, nickname = user.nickname, color = user.color)

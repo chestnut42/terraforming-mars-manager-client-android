@@ -36,7 +36,7 @@ import xyz.blockthem.mars.manager.ui.common.marsViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LeaderboardScreen() {
-    val vm = marsViewModel { LeaderboardViewModel(it.api) }
+    val vm = marsViewModel { LeaderboardViewModel(it.auth.api) }
     val authState by currentAuth().state.collectAsStateWithLifecycle()
     val myId = (authState as? AuthState.SignedIn)?.user?.id
     val state by vm.state.collectAsStateWithLifecycle()

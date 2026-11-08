@@ -35,12 +35,12 @@ import xyz.blockthem.mars.manager.MarsApp
 import xyz.blockthem.mars.manager.api.PlayerColor
 import xyz.blockthem.mars.manager.auth.AuthRepository
 
-/** Creates a ViewModel that gets the app's [AuthRepository]. */
+/** Creates a ViewModel with access to the app's dependencies ([MarsApp]). */
 @Composable
-inline fun <reified VM : ViewModel> marsViewModel(crossinline create: (AuthRepository) -> VM): VM =
+inline fun <reified VM : ViewModel> marsViewModel(crossinline create: (MarsApp) -> VM): VM =
     viewModel(
         factory = viewModelFactory {
-            initializer { create((this[APPLICATION_KEY] as MarsApp).auth) }
+            initializer { create(this[APPLICATION_KEY] as MarsApp) }
         },
     )
 

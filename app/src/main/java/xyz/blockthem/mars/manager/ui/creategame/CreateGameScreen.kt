@@ -60,7 +60,7 @@ import xyz.blockthem.mars.manager.ui.common.marsViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateGameScreen(onBack: () -> Unit, onCreated: () -> Unit) {
-    val vm = marsViewModel { CreateGameViewModel(it.api) }
+    val vm = marsViewModel { CreateGameViewModel(it.auth.api) }
     val state by vm.state.collectAsStateWithLifecycle()
     val focus = LocalFocusManager.current
 

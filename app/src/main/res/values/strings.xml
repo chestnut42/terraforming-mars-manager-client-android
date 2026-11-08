@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Mars Manager</string>
+    <string name="notification_channel_turns">Your turn</string>
+    <string name="notification_channel_turns_description">When a game is waiting for your decision</string>
 </resources>

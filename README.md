@@ -27,7 +27,7 @@ Differences from iOS:
 - There is a Sign out button.
 - Solar Phase has its own switch, sent as `solarPhase`. Until the iOS fix lands, the iOS app sends
   the Venus Next value for it and ignores its Solar Phase switch.
-- Push notifications aren't included yet.
+- Push notifications go through Firebase Cloud Messaging (see below).
 
 ## Setup
 
@@ -110,9 +110,24 @@ Worth considering:
    a link endpoint (for example `POST /manager/api/v1/me/link` with a second provider's ID token).
 3. **Richer `Game` message.** `GetGames` only returns `playersCount`. Opponent nicknames and colors,
    board and expansions would make the list readable on both platforms.
-4. **Push notifications (later).** FCM support needs a device-token type on
-   `UpdateDeviceToken` (today it always stores an APNs *production* token) and an FCM sender
-   next to the APN notifiers.
+4. **One push device per account.** The server keeps a single device token per user, so with two
+   Android devices only the last one signed in gets pushes.
+
+## Push notifications
+
+The server sends a push when the number of games waiting for your decision goes up
+(chestnut42/terraforming-mars-manager#43). Android has no badge counter, so nothing is sent when
+the count goes down.
+
+- `app/google-services.json` is the Firebase config for project `terraformingmarsmanager`. It isn't
+  secret.
+- After sign-in (and on every app start) the app sends its FCM token to
+  `POST /manager/api/v1/me/device-token` as `fcmToken`. Sign out sends an empty token, then deletes
+  the FCM token.
+- Notifications use channel `turns` and tag `awaiting-games`; both must match the server.
+- On Android 13+ the app asks for the notification permission after sign-in.
+- The server needs `MARS_FCM_CREDENTIALS_FILE`: a service account key with the
+  *Firebase Cloud Messaging API Admin* role.
 
 ## Layout
 
@@ -120,6 +135,7 @@ Worth considering:
 app/src/main/java/xyz/blockthem/mars/manager/
   api/        MarsApi (OkHttp client), wire models, errors
   auth/       AuthRepository (Credential Manager, token refresh), Jwt
+  push/       PushManager (FCM token, notification channel), MarsMessagingService
   ui/         MarsNavHost, theme, common helpers
   ui/{signin,games,creategame,leaderboard,profile}/   screens + ViewModels
 ```
